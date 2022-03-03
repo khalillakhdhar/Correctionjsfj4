@@ -31,6 +31,22 @@ public class Employee {
         this.nom = nom;
     }
 
+    public double getTaxe() {
+        return taxe;
+    }
+
+    public void setTaxe(double taxe) {
+        this.taxe = taxe;
+    }
+
+    public double getNette() {
+        return nette;
+    }
+
+    public void setNette(double nette) {
+        this.nette = nette;
+    }
+
     public String getPrenom() {
         return prenom;
     }
@@ -75,7 +91,7 @@ public class Employee {
         return listemp;
     }
     
-    public String calculer()
+    public void calculer()
     {
         taxe=0;
     if(this.salaire<2500)
@@ -92,14 +108,16 @@ public class Employee {
     
         this.nette=salaire-taxe;
 
-    return "index.xhtml?faces-redirect=true";
     }
     
     public void add()
     {
+        this.calculer();
+        
     listemp.add(this);
     
-    
+       // return "index.xhtml?faces-redirect=true";
+
     }
     
     

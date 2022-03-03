@@ -1,12 +1,140 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"></link>
+
         <title>Facelet Title</title>
     </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+  <h:body>
+      <h:form>
+        <div class="container">
+  <div class="row">
+    <div class="col">
+      
+    </div>
+    <div class="col-6">
+     <div class="mb-3">
+  <label  class="form-label">Nom</label>
+  <h:inputText class="form-control" validatorMessage="le nom est obligatoire" value="#{employee.nom}">
+      <f:validateRequired></f:validateRequired>
+  
+  </h:inputText>
+</div>
+           <div class="mb-3">
+  <label  class="form-label">Prenom</label>
+  <h:inputText class="form-control" validatorMessage="le prenom est obligatoire" value="#{employee.prenom}">
+  <f:validateRequired></f:validateRequired>
+  </h:inputText >
+</div>
+              <div class="mb-3">
+  <label  class="form-label">Age</label>
+  <h:inputText class="form-control" validatorMessage="l'age est obligatoire >=20" value="#{employee.age}">
+  <f:validateRequired></f:validateRequired>
+  <f:validateLongRange minimum="20" maximum="65"></f:validateLongRange>
+  
+  </h:inputText >
+</div>
+              <div class="mb-3">
+  <label  class="form-label">Salaire</label>
+  <h:inputText class="form-control" validatorMessage="veuillez saisir une salaire>=1500" value="#{employee.salaire}">
+      <f:validateLongRange minimum="1500"></f:validateLongRange>
+      <f:validateRequired></f:validateRequired>
+  
+  </h:inputText >
+</div>
+              <div class="mb-3">
+  <label  class="form-label">Grade</label>
+  <h:selectOneMenu class="form-control" value="#{employee.grade}">
+      <f:selectItem itemLabel="admin" itemValue="admin"></f:selectItem>
+      <f:selectItem itemLabel="chef" itemValue="chef"></f:selectItem>
+      <f:selectItem itemLabel="agent" itemValue="agent"></f:selectItem>
+      <f:selectItem itemLabel="ouvrier" itemValue="ouvrier"></f:selectItem>
+      
+      
+  </h:selectOneMenu>
+</div>
+        
+            <div class="mb-3">
+  <label  class="form-label">Groupe</label>
+  <h:selectOneRadio class="form-control" value="#{employee.groupe}">
+      <f:selectItem itemLabel="groupe1" itemValue="groupe1"></f:selectItem>
+      <f:selectItem itemLabel="groupe2" itemValue="groupe2"></f:selectItem>
+  
+      
+      
+  </h:selectOneRadio>
+</div>
+            <div class="mb-3">
+                <h:commandButton class="btn btn-primary" value="envoyer" action="#{employee.add()}"></h:commandButton>
+                <br></br>
+                Taxe sur salaire:<span class="text-center"> #{employee.taxe}</span><br></br>
+                salaire nette:<span class="text-center"> #{employee.nette}</span>
+</div>
+    </div>
+    <div class="col">
+      
+    </div>
+  </div>
+</div>
+          <h:dataTable class="table table-bordered" value="#{employee.listemp}" var="emp">
+              <h:column>
+                  <f:facet name="header">                    
+                      nom
+                  </f:facet>
+                  <h:outputText value="#{emp.nom}"></h:outputText>
+              </h:column>
+                <h:column>
+                  <f:facet name="header">                    
+                      prenom
+                  </f:facet>
+                  <h:outputText value="#{emp.prenom}"></h:outputText>
+              </h:column>
+                <h:column>
+                  <f:facet name="header">                    
+                      age
+                  </f:facet>
+                  <h:outputText value="#{emp.age}"></h:outputText>
+              </h:column>
+                <h:column>
+                  <f:facet name="header">                    
+                      grade
+                  </f:facet>
+                    <h:outputText value="#{emp.grade}"></h:outputText>
+              </h:column>
+                <h:column>
+                  <f:facet name="header">                    
+                      groupe
+                  </f:facet>
+                    <h:outputText value="#{emp.groupe}"></h:outputText>
+              </h:column>
+                <h:column>
+                  <f:facet name="header">                    
+                      salaire brute
+                  </f:facet>
+                    <h:outputText value="#{emp.salaire}"></h:outputText>
+              </h:column>
+                <h:column>
+                  <f:facet name="header">                    
+                      taxe
+                  </f:facet>
+                    <h:outputText value="#{emp.taxe}"></h:outputText>
+              </h:column>
+                <h:column>
+                  <f:facet name="header">                    
+                      salaire nette
+                  </f:facet>
+                    <h:outputText value="#{emp.nette}"></h:outputText>
+              </h:column>
+              
+              
+          </h:dataTable>
+        
+        
+        </h:form>
+  
+</h:body>
 </html>
 
