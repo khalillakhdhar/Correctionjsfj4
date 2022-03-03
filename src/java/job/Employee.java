@@ -110,13 +110,13 @@ public class Employee {
 
     }
     
-    public void add()
+    public String add()
     {
         this.calculer();
         
     listemp.add(this);
     
-       // return "index.xhtml?faces-redirect=true";
+       return "index.xhtml?faces-redirect=true";
 
     }
     
